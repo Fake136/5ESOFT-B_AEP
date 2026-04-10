@@ -1,5 +1,7 @@
 # 5ESOFT-B_AEP
-# ObservaAção - Sistema de Solicitações Públicas
+Heitor Saueressig Mello RA: 24042002-2
+Luiz Eduardo Valério Semensato RA: 241506132
+# Observação - Sistema de Solicitações Públicas
 
 Sistema desenvolvido para a AEP do 1º Bimestre - Engenharia de Software.
 
