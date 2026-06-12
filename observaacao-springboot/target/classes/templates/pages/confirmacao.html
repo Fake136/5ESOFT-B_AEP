@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<div th:fragment="content">
+    <div class="row justify-content-center mt-5">
+        <div class="col-lg-6">
+            <div class="card text-center p-5 shadow">
+                <h1 class="display-1 text-success mb-4">✅</h1>
+                <h2 class="text-success">Solicitação enviada com sucesso!</h2>
+
+                <div class="alert alert-info mt-4">
+                    <h5>Protocolo gerado:</h5>
+                    <h3 class="fw-bold" th:text="${solicitacao.protocolo}"></h3>
+                </div>
+
+                <p class="lead">Guarde este número para acompanhar o andamento da sua solicitação.</p>
+
+                <div class="d-grid gap-2 mt-4">
+                    <a href="/" class="btn btn-primary btn-lg">Voltar para Home</a>
+                    <a href="/busca" class="btn btn-success btn-lg">Acompanhar Protocolo</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+</html>

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<div th:fragment="content">
+    <div class="row justify-content-center">
+        <div class="col-lg-8">
+            <h2 class="mb-4">Detalhes da Solicitação</h2>
+
+            <div class="card p-4 mb-4" th:if="${solicitacao}">
+                <h4>Protocolo: <strong th:text="${solicitacao.protocolo}"></strong></h4>
+                <p><strong>Categoria:</strong> <span th:text="${solicitacao.categoria}"></span></p>
+                <p><strong>Localização:</strong> <span th:text="${solicitacao.localizacao}"></span></p>
+                <p><strong>Status Atual:</strong>
+                    <span class="badge bg-primary fs-5" th:text="${solicitacao.status}"></span>
+                </p>
+
+                <h5 class="mt-4">Histórico Completo</h5>
+                <div class="list-group mb-4">
+                    <div class="list-group-item" th:each="mov : ${solicitacao.historico}">
+                        <strong th:text="${mov.data}"></strong> —
+                        <span th:text="${mov.novoStatus}"></span><br>
+                        <small th:text="${mov.comentario}"></small>
+                        <small class="text-muted"> (por <span th:text="${mov.responsavel}"></span>)</small>
+                    </div>
+                </div>
+
+                <!-- Formulário para atualizar status -->
+                <h5>Atualizar Status</h5>
+                <form th:action="@{/gestor/atualizar/{id}(id=${solicitacao.id})}" method="post" class="row g-3">
+                    <div class="col-md-6">
+                        <label class="form-label">Novo Status</label>
+                        <select name="status" class="form-select" required>
+                            <option value="TRIAGEM">Triagem</option>
+                            <option value="EM_EXECUCAO">Em Execução</option>
+                            <option value="RESOLVIDO">Resolvido</option>
+                            <option value="ENCERRADO">Encerrado</option>
+                        </select>
+                    </div>
+                    <div class="col-md-6">
+                        <label class="form-label">Responsável</label>
+                        <input type="text" name="responsavel" class="form-control" value="Fernanda Lima" required>
+                    </div>
+                    <div class="col-12">
+                        <label class="form-label">Comentário (obrigatório)</label>
+                        <textarea name="comentario" class="form-control" rows="3" required></textarea>
+                    </div>
+                    <div class="col-12">
+                        <button type="submit" class="btn btn-success btn-lg w-100">Salvar Atualização</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+</html>

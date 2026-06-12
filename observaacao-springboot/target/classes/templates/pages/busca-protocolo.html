@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<div th:fragment="content">
+    <div class="row justify-content-center">
+        <div class="col-lg-8">
+            <h2 class="mb-4 text-center">Acompanhar Solicitação</h2>
+
+            <div class="card p-4 mb-4">
+                <form th:action="@{/busca}" method="get" class="mb-4">
+                    <div class="input-group input-group-lg">
+                        <input type="text" name="protocolo" class="form-control"
+                               placeholder="Digite o número do protocolo (ex: PROTO-DB698921)"
+                               th:value="${param.protocolo}">
+                        <button type="submit" class="btn btn-primary">Buscar</button>
+                    </div>
+                </form>
+
+                <!-- Mensagem quando não encontrou ou ainda não pesquisou -->
+                <div th:if="${solicitacao == null}" class="alert alert-info">
+                    Digite o número do protocolo acima para consultar o status e histórico.
+                </div>
+
+                <!-- Resultado da busca -->
+                <div th:if="${solicitacao != null}">
+                    <div class="alert alert-success">
+                        <h4>Protocolo: <strong th:text="${solicitacao.protocolo}"></strong></h4>
+                        <p><strong>Categoria:</strong> <span th:text="${solicitacao.categoria}"></span></p>
+                        <p><strong>Status Atual:</strong>
+                            <span class="badge bg-primary fs-6" th:text="${solicitacao.status}"></span>
+                        </p>
+                        <p><strong>Localização:</strong> <span th:text="${solicitacao.localizacao}"></span></p>
+                    </div>
+
+                    <h5 class="mt-4">Histórico de Movimentações</h5>
+                    <div th:if="${solicitacao.historico != null and !solicitacao.historico.isEmpty()}" class="list-group">
+                        <div class="list-group-item" th:each="mov : ${solicitacao.historico}">
+                            <div class="d-flex justify-content-between">
+                                <strong th:text="${mov.data}"></strong>
+                                <span class="badge bg-info" th:text="${mov.novoStatus}"></span>
+                            </div>
+                            <small th:text="${mov.comentario}"></small>
+                            <small class="text-muted">Responsável: <span th:text="${mov.responsavel}"></span></small>
+                        </div>
+                    </div>
+
+                    <div th:if="${solicitacao.historico == null or solicitacao.historico.isEmpty()}" class="alert alert-warning">
+                        Nenhum histórico de movimentação registrado ainda.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+</html>

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<div th:fragment="content">
+    <div class="row justify-content-center">
+        <div class="col-lg-8">
+            <h2 class="mb-4 text-center">Nova Solicitação</h2>
+
+            <form th:action="@{/cadastro}" th:object="${solicitacao}" method="post" class="card p-4">
+
+                <div class="row g-3">
+                    <div class="col-md-6">
+                        <label class="form-label fw-bold">Categoria *</label>
+                        <select th:field="*{categoria}" class="form-select" required>
+                            <option value="">Selecione uma categoria...</option>
+                            <option value="Iluminação Pública">Iluminação Pública</option>
+                            <option value="Buraco na Via">Buraco na Via</option>
+                            <option value="Limpeza Urbana">Limpeza Urbana</option>
+                            <option value="Segurança">Segurança</option>
+                            <option value="Saúde">Saúde</option>
+                            <option value="Outros">Outros</option>
+                        </select>
+                    </div>
+
+                    <div class="col-md-6">
+                        <label class="form-label fw-bold">Prioridade</label>
+                        <select th:field="*{prioridade}" class="form-select">
+                            <option value="BAIXA">Baixa</option>
+                            <option value="MEDIA" selected>Média</option>
+                            <option value="ALTA">Alta</option>
+                        </select>
+                    </div>
+
+                    <div class="col-12">
+                        <label class="form-label fw-bold">Descrição da Solicitação *</label>
+                        <textarea th:field="*{descricao}" class="form-control" rows="5"
+                                  placeholder="Descreva o problema com o máximo de detalhes..." required></textarea>
+                    </div>
+
+                    <div class="col-12">
+                        <label class="form-label fw-bold">Localização *</label>
+                        <input type="text" th:field="*{localizacao}" class="form-control"
+                               placeholder="Ex: Rua das Flores, 123 - Bairro Vila Nova" required>
+                    </div>
+
+                    <div class="col-12">
+                        <div class="form-check form-switch">
+                            <input class="form-check-input" type="checkbox" th:field="*{anonimo}" id="anonimoSwitch">
+                            <label class="form-check-label fw-bold" for="anonimoSwitch">
+                                Registrar como Anônimo (seus dados não serão identificados)
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="col-12">
+                        <button type="submit" class="btn btn-primary btn-lg w-100">
+                            Enviar Solicitação
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+</html>

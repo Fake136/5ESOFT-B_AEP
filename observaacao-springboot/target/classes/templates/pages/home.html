@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<div th:fragment="content">
+    <div class="text-center mt-5">
+        <h1 class="display-4 text-primary">Bem-vindo ao ObservaAção</h1>
+        <p class="lead mb-5">Acompanhe e registre demandas públicas com transparência</p>
+
+        <div class="d-grid gap-3 col-10 col-md-6 mx-auto">
+            <a href="/cadastro" class="btn btn-primary btn-lg btn-big">
+                ➕ Nova Solicitação
+            </a>
+            <a href="/busca" class="btn btn-success btn-lg btn-big">
+                🔎 Acompanhar Protocolo
+            </a>
+            <a href="/gestor/demandas" class="btn btn-dark btn-lg btn-big">
+                👨‍💼 Sou Servidor / Gestor
+            </a>
+        </div>
+
+        <p class="mt-5 text-muted">🔒 Anonimato garantido • Seus dados estão protegidos</p>
+    </div>
+</div>
+
+</html>
